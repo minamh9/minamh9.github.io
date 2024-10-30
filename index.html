@@ -23,39 +23,40 @@
             border: none;
             box-sizing: border-box; /* Ensures padding doesn’t affect element width */
         }
-        /* Background and Font Color Changes */
-        body {
+		/* Background and Font Color Changes */
+		body {
+			background-color: black; /* Sets background color to black */
+			color: white; /* Sets text color to white */
+		}
+
+		/* Ensure links are visible on the dark background */
+		a {
+			color: #FFA07A; /* Light color for readability */
+		}
+
+        /* Ensure all sections have a black background */
+        #intro, #header, #nav, #main, #footer, .post, .posts, .featured, article, section {
             background-color: black;
             color: white;
         }
 
-        /* Set background color to black for all containers and sections */
-        #wrapper, #intro, #header, #nav, #main, #footer, .post, .posts, .featured, article, section, .actions, .pagination, .logo {
-            background-color: black;
-            color: white;
-        }
+        /* Style individual articles to avoid white backgrounds */
+        .post.featured, .posts article {
+			background-color: black;
 
-        /* Ensure links are visible on the dark background */
-        a {
-            color: #FFA07A;
-        }
+		}
 
-        /* Remove white lines and borders between projects */
-        .posts article, .posts, .featured, .post {
-            background-color: black;
-            border: none; /* Removes any borders */
-            box-shadow: none; /* Removes any shadows */
-        }
+        /* Remove white lines between projects */
+        .posts article {
+			border-bottom: 1px solid black; /* Set border to black */
+         
+		}
 
-            /* Remove any padding that could create white gaps */
-            .posts article, .posts, .post {
-                padding: 0;
-            }
-
-                /* Adjust separators between project articles */
-                .posts article:not(:last-child) {
-                    border-bottom: 1px solid black; /* Ensure all borders are black */
-                }
+        /* Adjust article headers */
+        .posts article header h2, .major p, .actions a {
+			color: white;
+         
+		}
 
 		/* Smaller Image Size */
 		.image.fit img {
