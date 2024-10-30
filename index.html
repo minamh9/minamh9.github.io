@@ -57,7 +57,21 @@
 			color: white;
          
 		}
+        /* Container for posts to display as a grid with 3 columns */
+        .posts {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping to a new row */
+            gap: 20px; /* Space between project items */
+        }
 
+            /* Each project article will take one-third of the row */
+            .posts article {
+                flex: 1 1 calc(33.33% - 20px); /* Each item takes up about one-third, accounting for gap */
+                background-color: black; /* Ensures consistent background */
+                color: white;
+                padding: 20px; /* Adds padding inside each project box */
+                box-sizing: border-box; /* Ensures padding doesn’t affect width */
+            }
 		/* Smaller Image Size */
 		.image.fit img {
 			max-width: 70%; /* Adjusts to a smaller size */
@@ -70,6 +84,13 @@
 			color: #333;
 			font-size: 18px;
 		}
+
+        /* Responsive adjustment for smaller screens */
+        @media (max-width: 768px) {
+            .posts article {
+                flex: 1 1 100%; /* Stack articles on smaller screens */
+            }
+        }
 	</style>
 </head>
 	<body class="is-preload">
