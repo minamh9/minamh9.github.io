@@ -3249,6 +3249,10 @@ input, select, textarea {
 			}
 
 		#wrapper.fade-in:before {
+			background-color: black !important;
+			opacity: 1 !important; /* Removes any fade-in opacity effect */
+			transition: none !important; /* Removes any transition effect */
+
 			pointer-events: none;
 			-moz-transition: opacity 1s ease-in-out;
 			-webkit-transition: opacity 1s ease-in-out;
