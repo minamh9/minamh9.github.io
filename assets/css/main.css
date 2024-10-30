@@ -98,10 +98,26 @@ input, select, textarea {
 		box-sizing: inherit;
 	}
 
+	/* General styles */
 	body {
-		background-color: #1e252d;
+		background-color: #1e252d; /* Dark background */
+		color: #fff; /* White text for better contrast */
+		font-family: "Merriweather", Georgia, serif;
+		font-weight: 300;
+		font-size: 1rem;
+		line-height: 2.375;
+	}
+	/* Link styling */
+	a {
+		color: #FFA07A; /* Light color for readability on a dark background */
+		text-decoration: none;
+		border-bottom: dotted 1px;
+		transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 	}
 
+	a:hover {
+		border-bottom-color: transparent;
+	}
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
 			-webkit-animation: none !important;
@@ -112,6 +128,60 @@ input, select, textarea {
 			-ms-transition: none !important;
 			transition: none !important;
 		}
+	/* Posts section styling */
+	.posts {
+		display: flex;
+		flex-wrap: wrap; /* Allows items to wrap */
+		gap: 20px; /* Space between items */
+		justify-content: center; /* Center align the project items */
+		padding: 20px;
+	}
+
+	.posts .project {
+		flex: 1 1 calc(33.33% - 40px); /* 3 columns layout with gap accounted */
+		background-color: #1e252d; /* Consistent dark background */
+		color: #fff; /* White text color */
+		padding: 20px; /* Adds padding inside each project box */
+		margin-bottom: 20px; /* Space below each project */
+		border-bottom: 1px solid #555; /* Consistent dark grey border */
+		box-sizing: border-box;
+	}
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+	.posts .project {
+		flex: 1 1 100%; /* Stack articles on smaller screens */
+	}
+}
+
+/* Image alignment and resizing */
+.image.fit img {
+	max-width: 100%;
+	height: auto; /* Maintain aspect ratio */
+	margin: 0 auto;
+	display: block; /* Center the image */
+}
+
+/* Styling for consistent margin between projects */
+.posts .project + .project {
+	margin-top: 20px; /* Consistent margin between projects */
+}
+
+/* Ensure consistent border between articles */
+hr {
+	border: 0;
+	border-bottom: solid 2px #555;
+	margin: 20px 0;
+}
+
+@media screen and (max-width: 480px) {
+	.posts {
+		padding: 10px;
+	}
+
+		.posts .project {
+			margin-bottom: 15px; /* Adjust spacing for smaller screens */
+		}
+}
 
 /* Type */
 
@@ -3827,23 +3897,12 @@ input, select, textarea {
 
 			}
 
-		#main > .posts {
-			display: -moz-flex;
-			display: -webkit-flex;
-			display: -ms-flex;
-			display: flex;
-			-moz-flex-wrap: wrap;
-			-webkit-flex-wrap: wrap;
-			-ms-flex-wrap: wrap;
-			flex-wrap: wrap;
-			-moz-align-items: -moz-stretch;
-			-webkit-align-items: -webkit-stretch;
-			-ms-align-items: -ms-stretch;
-			align-items: stretch;
-			text-align: center;
-			width: 100%;
-			padding: 0;
-		}
+			#main > .posts {
+				display: flex;
+				flex-wrap: wrap; /* Allows wrapping to a new row */
+				gap: 20px; /* Space between project items */
+				justify-content: center; /* Center align the projects */
+			}
 
 			#main > .posts > * {
 				-moz-flex-shrink: 1;
@@ -3932,6 +3991,13 @@ input, select, textarea {
 				}
 
 			}
+				/* Add consistent border between project items */
+				.posts .project {
+					border-bottom: 1px solid #555; /* Ensure consistent dark grey border */
+					padding-bottom: 20px; /* Padding to separate content */
+					margin-bottom: 20px; /* Ensure space between articles */
+				}
+
 
 		@media screen and (max-width: 736px) {
 
