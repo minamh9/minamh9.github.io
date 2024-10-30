@@ -5,15 +5,65 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Mina Mehdinia's Data Science Portfolio Website</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css">
-		<link rel="stylesheet" href="font-awesome/css/all.min.css">
-	</head>
+<head>
+	<title>Mina Mehdinia's Data Science Portfolio Website</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css">
+	<link rel="stylesheet" href="font-awesome/css/all.min.css">
+
+	<!-- Custom Styles for Background and Font Color -->
+	<style>
+		/* Global reset for margin, padding, and borders */
+		* {
+			margin: 0;
+			padding: 0;
+			border: none;
+			box-sizing: border-box; /* Ensures padding doesn’t affect element width */
+		}
+		/* Background and Font Color Changes */
+		body {
+			background-color: black; /* Sets background color to black */
+			color: white; /* Sets text color to white */
+		}
+
+		/* Ensure links are visible on the dark background */
+		a {
+			color: #FFA07A; /* Light color for readability */
+		}
+
+		/* Ensure all sections have a black background */
+		#intro, #header, #nav, #main, #footer, .post, .posts, .featured, article, section {
+			background-color: black;
+			color: white;
+		}
+
+		/* Style individual articles to avoid white backgrounds */
+		.post.featured, .posts article {
+			background-color: black;
+		}
+
+		/* Adjust article headers */
+		.posts article header h2, .major p, .actions a {
+			color: white;
+		}
+	
+		/* Email icon styling */
+		.fas.fa-envelope {
+			color: #333;
+			font-size: 18px;
+		}
+
+		/* Responsive adjustment for smaller screens */
+		@media (max-width: 768px) {
+			.posts article {
+				flex: 1 1 100%; /* Stack articles on smaller screens */
+			}
+		}
+	</style>
+</head>
 	<body class="is-preload">
 
 		<!-- Wrapper -->
