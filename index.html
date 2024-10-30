@@ -16,6 +16,12 @@
 
 	<!-- Custom Styles for Background and Font Color -->
 	<style>
+        /* Global reset for margin, padding, and borders */
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
 		/* Background and Font Color Changes */
 		body {
 			background-color: black; /* Sets background color to black */
@@ -37,6 +43,12 @@
         .post.featured, .posts article {
 			background-color: black;
 
+		}
+
+        /* Remove white lines between projects */
+        .posts article {
+			border-bottom: 1px solid black; /* Set border to black */
+         
 		}
 
         /* Adjust article headers */
