@@ -1,151 +1,409 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>Mina Mehdinia's Data Science Portfolio Website</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+    <title>Predicting Amazon Customer Reviews Ratings with Naive Bayes - Mina Mehdinia</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <style>
+        :root {
+            --primary: #FFA07A;
+            --secondary: #4ECDC4;
+            --accent: #FF6B6B;
+            --dark: #1a1a1a;
+            --text: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
 
-				<!-- Header -->
-				<header id="header">
-					<a href="index.html" class="logo">Mina Mehdinia</a>
-				</header>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
 
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="index.html">Portfolio</a></li>
-							<li class="active"><a href="generic.html">About Me</a></li>
-							<li><a href="elements.html">Apps</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://linkedin.com/in/mina-mehdinia/" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://github.com/minamh9" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+        /* Advanced Background Effect */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
 
-				<!-- Main -->
-					<div id="main">
-                        <ul class="actions special">
-										<li><a href="https://github.com/minamh9/amazon-review-classification/blob/main/Amazon_Review_NaiveBayes.ipynb" class="button">Click here for code</a></li>
-									</ul>
-							<head>
-                             <title>Predicting Amazon Customer Reviews Ratings with Naive Bayes</title>
-                     </head>
-                        <body>
-                            <h1>Predicting Amazon Customer Reviews Ratings with Naive Bayes</h1>
-                            <p>In this blog post, we explore a fascinating use case of text classification, where we use a Naive Bayes classifier to predict the rating of an Amazon review based on its text. Text classification is one of the most common applications of Natural Language Processing, and here we apply it to a dataset of customer reviews for different products on Amazon.</p>
+            .bg-animation::before,
+            .bg-animation::after {
+                content: '';
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                border-radius: 50%;
+                background: var(--gradient);
+                filter: blur(100px);
+                animation: float 20s infinite;
+            }
 
-                            <h2>Introduction</h2>
-                            <p>Our dataset contains customer reviews for a myriad of products available on Amazon. Each review comes with a rating that ranges from 1 to 5. The ultimate goal of this project is to create a Naive Bayes classifier that accurately predicts the rating of a review just from its text content.</p>
-                            <p>The concept behind the Naive Bayes classifier is relatively straightforward. It starts by analysing the training data, which includes both reviews and their associated ratings. The classifier calculates the prior probability of each rating appearing in the dataset, and the likelihood of each word in the reviews showing up for a specific rating. This model then uses this derived information to predict the rating of unseen reviews.</p>
+            .bg-animation::before {
+                top: 20%;
+                left: 20%;
+                animation-delay: -5s;
+            }
 
-                            <h2>Data & Code</h2>
-                            <p>The main components of this project include a dataset and a Jupyter Notebook:</p>
-                            <ul>
-                                <li><code>AMAZON_FASHION.json.gz</code>: A dataset that contains Amazon customer reviews.</li>
-                                <li><code>naive_bayes_classifier.ipynb</code>: A Jupyter Notebook file that includes the entire codebase for the project.</li>
-                            </ul>
+            .bg-animation::after {
+                bottom: 20%;
+                right: 20%;
+                animation-delay: -10s;
+            }
 
-                            <h2>Approach</h2>
-                            <p>Implementing this project involves a series of carefully executed steps:</p>
-                            <ol>
-                                <li><b>Setting Up:</b> The first step in this project is to import the necessary Python libraries.
-                                    These include pandas for data handling, gzip for working with the gzipped dataset file,
-                                    sklearn for machine learning, and matplotlib for visualizations. We also import libraries
-                                    such as numpy.</li>
-                                <li><b>Loading the Dataset:</b> Our dataset is stored in a gzip-compressed JSON file,
-                                    and we use the pandas read_json function to load this data into a DataFrame,
-                                    which provides a convenient structure for data manipulation and analysis. We then
-                                    select the columns we are interested in, i.e., the overall rating, whether the review
-                                    is verified, the review time, and the review text.</li>
-                                <li><b>Preprocessing the Data:</b> Before we can feed the data into a machine learning model,
-                                    we need to preprocess it. This involves cleaning the data and transforming it into a
-                                    format that the machine learning model can understand. After loading the data, we check
-                                    for and handle any missing values. We also convert the reviewTime column into a datetime
-                                    format, which can be more easily manipulated for analysis.</li>
-                                <li><b>Exploratory Data Analysis (EDA):</b> In this step, we analyze the data to understand
-                                    its characteristics. We plot a histogram of the distribution of ratings and a bar plot
-                                    and a pie chart to see the proportion of verified reviews. We see that majority of
-                                    the reviews are verified, hence we decide to drop the unverified reviews as they make
-                                    up only a small proportion of the total data.</li>
-                                <img src="./images/percentage_verified.png" alt="Fig 1: Pie chart to see the proportion of verified reviews">
-                                <img src="./images/Dist_of_rating.png" alt="Fig 1: Distribution of rating">
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+        }
 
-                                <li><b>Feature Extraction:</b> To transform the review text into a format that can be fed
-                                    into the Naive Bayes model, we use the CountVectorizer class from sklearn. This class
-                                    converts a collection of text documents to a matrix of token counts, essentially
-                                    creating a bag-of-words representation of our text data.</li>
-                                <li><b>Choosing a Model:</b> We chose the Multinomial Naive Bayes model for this project.
-                                    Naive Bayes is a classification algorithm for binary and multi-class classification
-                                    problems. It is based on the Bayes theorem, and it assumes that the presence of a
-                                    particular feature in a class is unrelated to the presence of any other feature.
-                                    This works well with text data where this assumption often holds true.</li>
-                                <li><b>Training the Model:</b> We train our Naive Bayes classifier on our training data.
-                                    The fit method is called with the training data and the corresponding labels.</li>
-                                <li><b>Evaluating the Model:</b> After training the model, we use it to make predictions
-                                    on our test data. We then compare these predictions with the true labels to evaluate
-                                    the performance of the model. We calculate accuracy, precision, recall, and F1 score
-                                    to get a comprehensive understanding of our model's performance. We also plot a ROC
-                                    curve for each class to visualize the performance of our model. The ROC curve is a
-                                    plot of the true positive rate against the false positive rate. The area under the
-                                    curve (AUC) gives us a measure of the model's ability to distinguish between different classes.</li>
-                                <div style="text-align: center;">
-                                    <img src="./images/ROC_Curve.png" alt="Fig 2: Visualization of ROC Curve">
-                                </div>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Accuracy</th>
-                                            <th>Precision</th>
-                                            <th>Recall</th>
-                                            <th>F1 Score</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>0.661197</td>
-                                            <td>0.62844</td>
-                                            <td>0.661197</td>
-                                            <td>0.63773</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
 
-                                <li><b>Conclusion:</b> By leveraging the power of the Multinomial Naive Bayes model, we
-                                    are able to predict Amazon review ratings with high accuracy. This can be a useful
-                                    tool for businesses to automatically analyze and understand customer sentiment from their reviews.</li>
-                            </ol>
+        .nav-logo {
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            text-decoration: none;
+            font-weight: 700;
+        }
 
-                            <h2>How to Replicate This Project</h2>
-                            <p>Interested in running this project on your own machine? It's simple. First, clone the repository containing the project. Then, open and run the Jupyter Notebook <code>naive_bayes_classifier.ipynb</code>.</p>
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 2rem;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
 
-                            <h2>Potential Improvements</h2>
-                            <p>This project has room for future enhancements. Some of the areas we could explore include tuning the parameters of the Naive Bayes classifier or experimenting with different types of classifiers to compare their performance. These improvements can potentially increase the accuracy of the model's predictions.</p>
+            .nav-links a::before {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: var(--gradient);
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
 
-                            <h2>About the Author</h2>
-                            <p>This project was developed by Mina Mehdinia, a passionate Data Scientist who enjoys exploring new ways to leverage machine learning techniques for real-world applications.</p>
+            .nav-links a:hover::before {
+                transform: scaleX(1);
+            }
 
-                        </body>
-					</div>
-			</div>
-	</body>
+        /* Main Content */
+        .project-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .project-date {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.5s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .project-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.7s;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+            .project-title::after {
+                content: attr(data-text);
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: -1;
+                background: var(--gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                opacity: 0.3;
+                transform: translateZ(-10px);
+                filter: blur(10px);
+            }
+
+        /* Content Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.9s;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+            .content-card:hover {
+                transform: translateY(-10px) rotateX(10deg);
+                border-color: var(--primary);
+                box-shadow: 0 20px 40px rgba(255, 160, 122, 0.2);
+            }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+            .card-title::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 50px;
+                height: 2px;
+                background: var(--gradient);
+            }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 1.1s;
+        }
+
+        .action-button {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            min-width: 200px;
+            text-align: center;
+            z-index: 1;
+        }
+
+            .action-button.primary {
+                background: var(--gradient);
+                color: white;
+            }
+
+            .action-button.secondary {
+                background: transparent;
+                border: 2px solid var(--primary);
+                color: var(--primary);
+            }
+
+            .action-button::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--gradient);
+                opacity: 0;
+                z-index: -1;
+                transition: opacity 0.5s ease;
+            }
+
+            .action-button:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(255, 160, 122, 0.3);
+            }
+
+            .action-button.primary:hover::before {
+                opacity: 1;
+            }
+
+            .action-button.secondary:hover {
+                color: white;
+                border-color: transparent;
+            }
+
+                .action-button.secondary:hover::before {
+                    opacity: 1;
+                }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(100px, -100px);
+            }
+
+            50% {
+                transform: translate(200px, 0);
+            }
+
+            75% {
+                transform: translate(100px, 100px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">Mina Mehdinia</a>
+            <div class="nav-links">
+                <a href="index.html">Portfolio</a>
+                <a href="generic.html">About me</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="project-container">
+        <header class="project-header">
+            <div class="project-date">       </div>
+            <h1 class="project-title" data-text="Predicting Amazon Customer Reviews Ratings with Naive Bayes">
+                Predicting Amazon Customer Reviews Ratings with Naive Bayes
+            </h1>
+        </header>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <h3 class="card-title">Project Overview</h3>
+                <p>In this project, I explore a fascinating use case of text classification, where I use a Naive Bayes classifier to predict the rating of an Amazon review based on its text. </p>
+            
+            </div>
+            <div class="content-card">
+                <h3 class="card-title">Key Features</h3>
+                <p>Text classification is one of the most common applications of Natural Language Processing, and here I apply it to a dataset of customer reviews for different products on Amazon.</p>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="https://medium.com/@minamehdinia213/predicting-amazon-customer-reviews-ratings-with-naive-bayes-86dc42a1301f"
+               class="action-button primary">Read Full Report</a>
+            <a href="https://github.com/minamh9/amazon-review-classification/blob/main/Amazon_Review_NaiveBayes.ipynb"
+               class="action-button secondary">View Code</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script>
+        // 3D Tilt Effect for Cards
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+    </script>
+</body>
 </html>
-
-
-
-
-
-

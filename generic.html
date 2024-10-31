@@ -1,229 +1,488 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
-	<title>Mina Mehdinia's Data Science Portfolio Website</title>
+	<title>About Mina Mehdinia - Data Scientist</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css">
-	<link rel="stylesheet" href="font-awesome/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-	<!-- Custom Styles for Background and Font Color -->
 	<style>
-		/* Global reset for margin, padding, and borders */
 		* {
 			margin: 0;
 			padding: 0;
-			border: none;
-			box-sizing: border-box; /* Ensures padding doesn’t affect element width */
+			box-sizing: border-box;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 		}
-		/* Background and Font Color Changes */
+
 		body {
-			background-color: black; /* Sets background color to black */
-			color: white; /* Sets text color to white */
+			background-color: #000;
+			color: #fff;
+			line-height: 1.6;
 		}
 
-		/* Ensure all sections have a black background */
-		#intro, #header, #nav, #main, #footer, .post, .posts, .featured, article, section {
-			background-color: black;
-			color: white;
+		/* Navigation */
+		nav {
+			position: fixed;
+			top: 0;
+			width: 100%;
+			background: rgba(0, 0, 0, 0.8);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+			z-index: 1000;
+			padding: 1rem 0;
 		}
 
-        /* Set all headings (h1, h2, h3, etc.) to white */
-        h1, h2, h3, h4, h5, h6 {
-            color: white;
+		.nav-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 2rem;
+		}
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
         }
 
-        /* Ensure all bold text is white */
-        strong, b, .highlight {
-            color: white;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
-        /* Ensure links are visible on the dark background */
-        a {
-            color: #FFA07A; /* Light color for readability */
+            .nav-links a {
+                color: #fff;
+                text-decoration: none;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+                .nav-links a:hover {
+                    opacity: 1;
+                }
+
+		/* Hero Section */
+		.hero-section {
+			height: 70vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 6rem 2rem;
+			background: linear-gradient(180deg, #000 0%, #111 100%);
+		}
+
+		.profile-container {
+			display: flex;
+			gap: 4rem;
+			max-width: 1200px;
+			margin: 0 auto;
+			align-items: center;
+			opacity: 0;
+			transform: translateY(30px);
+			animation: fadeInUp 1s forwards;
+		}
+
+		.profile-image {
+			flex: 0 0 300px;
+		}
+
+			.profile-image img {
+				width: 100%;
+				height: auto;
+				border-radius: 1.5rem;
+				box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+			}
+
+		.profile-text {
+			flex: 1;
+		}
+
+			.profile-text h1 {
+				font-size: 3.5rem;
+				margin-bottom: 1.5rem;
+				font-weight: 700;
+			}
+
+			.profile-text p {
+				font-size: 1.2rem;
+				opacity: 0.9;
+				margin-bottom: 2rem;
+			}
+
+		/* Content Sections */
+		.content-section {
+			padding: 4rem 2rem;
+			max-width: 1200px;
+			margin: 0 auto;
+			opacity: 0;
+			transform: translateY(30px);
+		}
+
+			.content-section.visible {
+				opacity: 1;
+				transform: translateY(0);
+				transition: opacity 1s, transform 1s;
+			}
+
+			.content-section h2 {
+				font-size: 2.5rem;
+				margin-bottom: 2rem;
+				color: white;
+				font-weight: 600;
+			}
+
+		.skills-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 2rem;
+			margin-bottom: 3rem;
+		}
+
+		.skill-category {
+			background: rgba(255, 255, 255, 0.05);
+			padding: 2rem;
+			border-radius: 1rem;
+			transition: transform 0.3s ease;
+		}
+
+			.skill-category:hover {
+				transform: translateY(-5px);
+				background: rgba(255, 255, 255, 0.08);
+			}
+
+			.skill-category h3 {
+				color: #FFA07A;
+				margin-bottom: 1rem;
+				font-size: 1.2rem;
+			}
+
+			.skill-category ul {
+				list-style: none;
+				padding: 0;
+			}
+
+			.skill-category li {
+				margin-bottom: 0.5rem;
+				color: rgba(255, 255, 255, 0.9);
+			}
+
+		.courses-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1.5rem;
+			margin-top: 2rem;
+		}
+
+		.course-item {
+			background: rgba(255, 255, 255, 0.05);
+			padding: 1rem;
+			border-radius: 0.5rem;
+			transition: transform 0.3s ease;
+		}
+
+			.course-item:hover {
+				transform: translateY(-3px);
+				background: rgba(255, 255, 255, 0.08);
+			}
+
+		.hobbies-section {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+			gap: 2rem;
+		}
+
+        .hobby-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 1.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-		/* Adjust article headers */
-		.posts article header h2, .major p, .actions a {
-			color: white;
-		}
-	
-		/* Email icon styling */
-		.fas.fa-envelope {
-			color: #333;
-			font-size: 18px;
+            .hobby-card:hover {
+                transform: translateY(-5px);
+                background: rgba(255, 255, 255, 0.08);
+                border-color: #FFA07A;
+            }
+
+            .hobby-card h3 {
+                color: #FFA07A;
+                font-size: 1.4rem;
+                font-weight: 600;
+                margin-bottom: 1.2rem;
+                letter-spacing: 0.02em;
+                position: relative;
+                display: inline-block;
+            }
+
+                .hobby-card h3::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    width: 30px;
+                    height: 2px;
+                    background-color: #FFA07A;
+                    transition: width 0.3s ease;
+                }
+
+            .hobby-card:hover h3::after {
+                width: 100%;
+            }
+
+            .hobby-card p {
+                color: rgba(255, 255, 255, 0.9);
+                line-height: 1.6;
+                font-size: 1.1rem;
+            }
+
+		.resume-button {
+			display: inline-block;
+			padding: 1rem 2rem;
+			background: #0071e3;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 2rem;
+			transition: all 0.3s ease;
+			font-weight: 500;
+			margin-top: 3rem;
 		}
 
-		/* Responsive adjustment for smaller screens */
+			.resume-button:hover {
+				background: #0077ed;
+				transform: translateY(-2px);
+			}
+
+		@keyframes fadeInUp {
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		/* Social Links */
+		.social-links {
+			position: fixed;
+			bottom: 2rem;
+			right: 2rem;
+			display: flex;
+			gap: 1rem;
+			z-index: 1000;
+		}
+
+			.social-links a {
+				color: #fff;
+				font-size: 1.5rem;
+				opacity: 0.8;
+				transition: all 0.3s ease;
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+			}
+
+				.social-links a:hover {
+					opacity: 1;
+					transform: translateY(-2px);
+					background: rgba(255, 255, 255, 0.2);
+				}
+
 		@media (max-width: 768px) {
-			.posts article {
-				flex: 1 1 100%; /* Stack articles on smaller screens */
+			.profile-container {
+				flex-direction: column;
+				text-align: center;
+				gap: 2rem;
+			}
+
+			.profile-image {
+				flex: 0 0 200px;
+			}
+
+			.profile-text h1 {
+				font-size: 2.5rem;
+			}
+
+			.skills-grid, .courses-grid {
+				grid-template-columns: 1fr;
 			}
 		}
 	</style>
 </head>
-	<body class="is-preload">
-
-		<!-- Wrapper -->
-			<div id="wrapper">
-
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Mina Mehdinia</a>
-					</header>
-
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li><a href="index.html">Portfolio</a></li>
-							<li class="active"><a href="generic.html">About Me</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://linkedin.com/in/mina-mehdinia/" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://github.com/minamh9" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="https://medium.com/@minamehdinia213" class="fas fa-medium"><span class="label">Medium</span></a></li>
-							<li><a href="mailto:minamehdinia213@gmail.com" class="fas fa-envelope-square"><span class="label">Email</span></a></li>
-
-						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Post -->
-						<h2>Mina Mehdinia</h2>
-									<div class="box">
-										<p> <span class="image left"><img src="images/pic_profile.jpg" alt="" /></span>With a strong background in mathematics,
-											hands-on experience in Python, R, and machine learning, and a comprehensive 4-year bachelor's program in data science,
-											I am eager to apply my skills to solve complex problems and make meaningful contributions in the fields of data science, data analysis
-											and AI. My passion for data science is ignited by my innate curiosity and drive to uncover hidden patterns in the data.
-											My comprehensive 4-year bachelor's program in data science has equipped me with a deep understanding of the field and its
-											best practices, providing a solid academic foundation for my future endeavors. Throughout my academic journey,
-											I have consistently demonstrated a commitment to learning and growing, always eager to face new challenges head-on.
-											As you explore my portfolio, you will find a collection of projects and accomplishments that showcase my versatility,
-											adaptability, and genuine enthusiasm for my chosen field.</p>
-									</div>
-<!--								<figure class="image main"><img src="images/pic01.jpg"  alt="" />-->
-<!--								  <figcaption>Artist: DALLE.</figcaption></figure>-->
-									<h2>Skills</h2>
-
-										<ul>
-											<li><strong>Programming Languages:</strong> Python, R, SQL, Bash, C++</li>
-											<li><strong>Libraries: </strong> Pandas, numpy, scikit-learn, PyTorch, Transformers, NLTK, openai, matplotlib, seaborn, plotly, ggplot2, dplyr, tidyr</li>
-											<li><strong>Developer Tools:</strong> Git, Jupyter, Colab, PyCharm, RStudio, VS Code, DataGrip, AWS SageMaker</li>
-											<li><strong>ML Techniques:</strong> Deep Learning, Natural Language Processing, Large language models, Generative AI, Convolutional Neural Networks, Linear regression, Support Vector Machine, Random Forest, Decision Tree, K-means Clustering</li>
-											<li><strong>Data Science Techniques and Statistical Methods:</strong> Predictive modeling, Time Series Analysis, Hypothesis Testing, Regression Analysis, Descriptive Statistics, Inferential Statistics, Dimensionality Reduction, Data Cleaning and Preprocessing, Data Visualization, Correlation Analysis</li>
-										</ul>
-						<h2>Notable Courses</h2>
-							  <p>
-								I have successfully completed a range of courses in my academic journey, with A grades in almost all of them. These courses have provided me with a strong foundation in data science, computer science, and mathematics.
-							  </p>
-							  <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-								<ul style="flex: 1;">
-								  <li>Algorithms</li>
-								  <li>Machine Learning</li>
-								  <li>Artificial Intelligence</li>
-								  <li>Intro to Database Management System</li>
-								  <li>Data Visualization in R</li>
-								  <li>Data Structures</li>
-								  <li>Modern Regression Analysis</li>
-								</ul>
-								<ul style="flex: 1;">
-								  <li>Statistical Learning</li>
-								  <li>Large-scale Data Algorithms</li>
-								  <li>Data Science Consulting Skills</li>
-								  <li>Data Science Practicum</li>
-								  <li>Computer Science I & II</li>
-								  <li>Intro to Unix</li>
-								  <li>Calculus I - IV</li>
-								</ul>
-								<ul style="flex: 1;">
-								  <li>Statistics I & II</li>
-								  <li>Applied Linear Algebra I & II</li>
-								  <li>Discrete Structures I & II</li>
-								</ul>
-							  </div>
-
-						<h2>Hobbies</h2>
-								<ul>
-									<li><strong>Swimming:</strong> Enjoy staying active and maintaining a healthy lifestyle through swimming.</li>
-									<li><strong>Hiking:</strong> Love exploring the great outdoors and going on adventures through hiking.</li>
-									<li><strong>Weight Lifting:</strong> Passionate about fitness and building strength through weight lifting.</li>
-									<li><strong>Decorating and Design:</strong> Creative in decorating and designing house furniture, food presentation, and personal fashion.</li>
-								</ul>
-
-							<ul class="actions special">
-								<li><a href="Mina_resume.pdf" class="button" style="background-color: #FFA07A;" >Click here to see my resume</a></li>
-							</ul>
-
-				<!-- Footer -->
-					<footer id="footer">
-<!--						<section>-->
-<!--							<form method="post" action="#">-->
-<!--								<div class="fields">-->
-<!--									<div class="field">-->
-<!--										<label for="name">Name</label>-->
-<!--										<input type="text" name="name" id="name" />-->
-<!--									</div>-->
-<!--									<div class="field">-->
-<!--										<label for="email">Email</label>-->
-<!--										<input type="text" name="email" id="email" />-->
-<!--									</div>-->
-<!--									<div class="field">-->
-<!--										<label for="message">Message</label>-->
-<!--										<textarea name="message" id="message" rows="3"></textarea>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<ul class="actions">-->
-<!--									<li><input type="submit" value="Send Message" /></li>-->
-<!--								</ul>-->
-<!--							</form>-->
-<!--						</section>-->
-<!--						<section class="split contact">-->
-<!--							<section class="alt">-->
-<!--								<h3>Address</h3>-->
-<!--								<p>Portland, Oregon, USA<br /></p>-->
-<!--							</section>-->
-<!--							<section>-->
-<!--								<h3>Phone</h3>-->
-<!--								<p><a href="#">(503) 308-0778</a></p>-->
-<!--							</section>-->
-<!--							<section>-->
-<!--								<h3>Email</h3>-->
-<!--								<p><a href="#">minatab253-at-gmail.com</a></p>-->
-<!--							</section>-->
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://linkedin.com/in/mina-mehdinia/" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-									<li><a href="https://github.com/minamh9" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-<!--						</section>-->
-					</footer>
-
-<!--				&lt;!&ndash; Copyright &ndash;&gt;-->
-<!--					<div id="copyright">-->
-<!--						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>-->
-<!--					</div>-->
-
+<body>
+	<!-- Navigation -->
+	<nav>
+		<div class="nav-content">
+			<a href="index.html" class="nav-logo">Mina Mehdinia</a>
+			<div class="nav-links">
+				<a href="index.html">Portfolio</a>
+				<a href="generic.html">About me</a>
 			</div>
+		</div>
+	</nav>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	<!-- Hero Section -->
+	<section class="hero-section">
+		<div class="profile-container">
+			<div class="profile-image">
+				<img src="images/pic_profile.jpg" alt="Mina Mehdinia" />
+			</div>
+			<div class="profile-text">
+				<h1>Mina Mehdinia</h1>
+				<p>
+					I Graduated with highest honors in Data Science from an intensive four-year university program.
+					Through various internships, I applied machine learning and data analytics to solve practical business challenges.
+					I'm based in Chicago, IL, but I'm open to relocating.
+					I prefer a hybrid work setup to connect with colleagues in person, but I’m flexible with other arrangements if needed.
+				</p>
+			</div>
+		</div>
+	</section>
 
-	</body>
+	<!-- Skills Section -->
+	<section class="content-section">
+		<h2>Skills</h2>
+		<div class="hobbies-section">
+			<div class="hobby-card">
+				<h3>Programming Languages</h3>
+				<ul>
+					<li>Python</li>
+					<li>R</li>
+					<li>SQL</li>
+				</ul>
+			</div>
+			<div class="hobby-card">
+				<h3>Libraries</h3>
+				<ul>
+					<li>Pandas </li>
+					<li>NumPy</li>
+					<li>Scikit-learn</li>
+					<li>PyTorch</li>
+					<li>Transformers</li>
+					<li>OpenAI</li>
+					<li>Matplotlib </li>
+					<li>OpenAI</li>
+					<li>Plotly</li>
+					<li>ggplot2</li>
+					<li>dplyr</li>
+					<li>tidyr</li>
+				</ul>
+			</div>
+			<div class="hobby-card">
+				<h3>Developer Tools</h3>
+				<ul>
+					<li>Git</li>
+					<li>Jupyter</li>
+					<li>Colab</li>
+					<li>PyCharm</li>
+					<li>RStudio</li>
+					<li>VS Code</li>
+					<li>DataGrip</li>
+					<li>AWS SageMaker</li>
+				</ul>
+			</div>
+			<div class="hobby-card">
+				<h3>ML Techniques</h3>
+				<ul>
+					<li>Deep Learning</li>
+					<li>Natural Language Processing</li>
+					<li>Large Language Models</li>
+					<li>Generative AI</li>
+					<li>CNN</li>
+					<li>Random Forest</li>
+					<li>SVM</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- Notable Courses Section -->
+	<section class="content-section">
+		<h2>Notable Courses</h2>
+		<p>I have successfully completed a range of courses in my academic journey, with A grades in almost all of them. These courses have provided me with a strong foundation in data science, computer science, and mathematics.</p>
+		<div class="courses-grid">
+			<div class="course-item">Algorithms</div>
+			<div class="course-item">Machine Learning</div>
+			<div class="course-item">Artificial Intelligence</div>
+			<div class="course-item">Database Management</div>
+			<div class="course-item">Data Visualization in R</div>
+			<div class="course-item">Data Structures</div>
+			<div class="course-item">Modern Regression Analysis</div>
+			<div class="course-item">Statistical Learning</div>
+			<div class="course-item">Large-scale Data Algorithms</div>
+			<div class="course-item">Data Science Consulting</div>
+			<div class="course-item">Computer Science I & II</div>
+			<div class="course-item">Calculus I - IV</div>
+		</div>
+	</section>
+
+	<!-- Hobbies Section -->
+	<section class="content-section">
+		<h2>Hobbies</h2>
+		<div class="hobbies-section">
+			<div class="hobby-card">
+				<h3>Swimming</h3>
+				<p>Enjoy staying active and maintaining a healthy lifestyle through swimming.</p>
+			</div>
+			<div class="hobby-card">
+				<h3>Hiking</h3>
+				<p>Love exploring the great outdoors and going on adventures through hiking.</p>
+			</div>
+			<div class="hobby-card">
+				<h3>Weight Lifting</h3>
+				<p>Passionate about fitness and building strength through weight lifting.</p>
+			</div>
+			<div class="hobby-card">
+				<h3>Decorating and Design</h3>
+				<p>Creative in decorating and designing house furniture, food presentation, and personal fashion.</p>
+			</div>
+		</div>
+
+		<center>
+			<a href="Mina-Mehdinia--Resume.pdf" class="resume-button">View My Resume</a>
+		</center>
+	</section>
+
+	<!-- Social Links -->
+	<div class="social-links">
+		<a href="https://linkedin.com/in/mina-mehdinia/" class="fab fa-linkedin"></a>
+		<a href="https://github.com/minamh9" class="fab fa-github"></a>
+		<a href="https://medium.com/@minamehdinia213" class="fab fa-medium"></a>
+		<a href="mailto:minamehdinia213@gmail.com" class="fas fa-envelope"></a>
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script>
+		// Intersection Observer for scroll animations
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+				}
+			});
+		}, {
+			threshold: 0.1
+		});
+
+		// Observe all content sections
+		document.querySelectorAll('.content-section').forEach(section => {
+			observer.observe(section);
+		});
+	</script>
+</body>
 </html>

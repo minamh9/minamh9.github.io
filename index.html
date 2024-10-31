@@ -1,378 +1,395 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
-	<title>Mina Mehdinia's Data Science Portfolio Website</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css">
-	<link rel="stylesheet" href="font-awesome/css/all.min.css">
-
-	<!-- Custom Styles for Background and Font Color -->
-	<style>
-        /* Global reset for margin, padding, and borders */
+    <title>Mina Mehdinia's Data Science Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
         * {
             margin: 0;
             padding: 0;
-            border: none;
-            box-sizing: border-box; /* Ensures padding doesn’t affect element width */
-        }
-		/* Background and Font Color Changes */
-		body {
-			background-color: black; /* Sets background color to black */
-			color: white; /* Sets text color to white */
-		}
-
-		/* Ensure links are visible on the dark background */
-		a {
-			color: #FFA07A; /* Light color for readability */
-		}
-
-        /* Ensure all sections have a black background */
-        #intro, #header, #nav, #main, #footer, .post, .posts, .featured, article, section {
-            background-color: black;
-            color: white;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
 
-        /* Style individual articles to avoid white backgrounds */
-        .post.featured, .posts article {
-			background-color: black;
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
-		}
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
 
-        /* Remove white lines between projects */
-        .posts article {
-			border-bottom: 1px solid black; /* Set border to black */
-         
-		}
-
-        /* Adjust article headers */
-        .posts article header h2, .major p, .actions a {
-			color: white;
-         
-		}
-        /* Container for posts to display as a grid with 3 columns */
-        .posts {
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            flex-wrap: wrap; /* Allows wrapping to a new row */
-            gap: 20px; /* Space between project items */
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-            /* Each project article will take one-third of the row */
-            .posts article {
-                flex: 1 1 calc(33.33% - 20px); /* Each item takes up about one-third, accounting for gap */
-                background-color: black; /* Ensures consistent background */
-                color: white;
-                padding: 20px; /* Adds padding inside each project box */
-                box-sizing: border-box; /* Ensures padding doesn’t affect width */
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+            .nav-links a {
+                color: #fff;
+                text-decoration: none;
+                opacity: 0.8;
+                transition: opacity 0.3s;
             }
-		/* Smaller Image Size */
-		.image.fit img {
-			max-width: 70%; /* Adjusts to a smaller size */
-			height: auto; /* Maintains aspect ratio */
-			margin: 0 auto;
-		}
 
-		/* Email icon styling */
-		.fas.fa-envelope {
-			color: #333;
-			font-size: 18px;
-		}
+                .nav-links a:hover {
+                    opacity: 1;
+                }
 
-        /* Responsive adjustment for smaller screens */
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(180deg, #000 0%, #111 100%);
+        }
+
+            .hero h1 {
+                font-size: 4rem;
+                margin-bottom: 1rem;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeInUp 1s forwards;
+            }
+
+            .hero p {
+                font-size: 1.5rem;
+                opacity: 0.8;
+                max-width: 600px;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: fadeInUp 1s 0.3s forwards;
+            }
+
+        /* Project Sections */
+        .project-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s, transform 1s;
+        }
+
+            .project-section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        .project-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .project-text {
+            padding: 2rem;
+        }
+
+            .project-text h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .project-text p {
+                font-size: 1.1rem;
+                line-height: 1.6;
+                opacity: 0.8;
+                margin-bottom: 2rem;
+            }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #0071e3;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 2rem;
+            transition: background-color 0.3s;
+        }
+
+            .button:hover {
+                background: #0077ed;
+            }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Social Links */
+        .social-links {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+            .social-links a {
+                color: #fff;
+                font-size: 1.5rem;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+                .social-links a:hover {
+                    opacity: 1;
+                }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .posts article {
-                flex: 1 1 100%; /* Stack articles on smaller screens */
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .project-text h2 {
+                font-size: 2rem;
             }
         }
-	</style>
+    </style>
 </head>
-	<body>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">Mina Mehdinia</a>
+            <div class="nav-links">
+                <a href="index.html">Portfolio</a>
+                <a href="generic.html">About me</a>
+            </div>
+        </div>
+    </nav>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <section class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>This website is a platform that showcases my skills and accomplishments in data science and data analysis.</p>
+    </section>
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>The power of the data<br /></h1>
-						<p>A Data Scientist and Analyst's Passionate Pursuit</p>
-						<ul class="actions">
-							<li><a href="#header" class="button icon solid solo fas fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-text">
+                <h2>Automating Review Evaluation with OpenAI's GPT-3.5</h2>
+                <p>The goal of this project is to demonstrate the use of prompt engineering with GPT. I Employed OpenAI's GPT-3.5 to analyze and score Amazon product reviews.</p>
+                <a href="openai.html" class="button">Learn more</a>
+            </div>
+            <div class="project-image">
+                <img src="images/OpenAI's GPT-3.5.jpg" alt="OpenAI Project" />
+            </div>
+        </div>
+    </section>
 
-				<!-- Header -->
-					<header id="header">
-						<a href="index.html" class="logo">Mina Mehdinia</a>
-					</header>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-image">
+                <img src="images/hugging.jpg" alt="BERT Project" />
+            </div>
+            <div class="project-text">
+                <h2>Hugging Face Transformers and BERT</h2>
+                <p>The goal of this project is to demonstrate the use of Hugging Face Transformers and BERT for sentiment analysis, and to compare the performance with Naive Bayes for predicting product ratings on Amazon based on customer reviews.</p>
+                <a href="Bert_Transformers.html" class="button">Learn more</a>
+            </div>
+        </div>
+    </section>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href="index.html">Portfolio</a></li>
-							<li><a href="generic.html">About me</a></li>
-			
-						</ul>
-						<ul class="icons">
-							<li><a href="https://linkedin.com/in/mina-mehdinia/" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-							<li><a href="https://github.com/minamh9" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="https://medium.com/@minamehdinia213" class="fas fa-medium"><span class="label">Medium</span></a></li>
-							<li><a href="mailto:minamehdinia213@gmail.com" class="fas fa-envelope"><span class="label">Email</span></a></li>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-text">
+                <h2>BERT Embeddings and T-SNE Visualization</h2>
+                <p>This project develops a fine-tuned BERT model to create embeddings of Amazon product reviews, with t-SNE visualization revealing structure and relationships within the data.</p>
+                <a href="T-SNE.html" class="button">Learn more</a>
+            </div>
+            <div class="project-image">
+                <img src="images/DALLE1.jpg" alt="T-SNE Project" />
+            </div>
+        </div>
+    </section>
 
-						</ul>
-					</nav>
-				<style>
-				.fas.fa-envelope {
-        		 color: #333;
-         		font-size: 18px;
-         		 }
-</style>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<p>
-										Welcome to Mina's Portfolio! This website is a platform that showcases
-										Mina's skills and accomplishments in data science and data analysis. I'm currently available for full-time, part-time, and freelance work.
-
-									</p>
-								</header>
-							</article>
-
-						<!-- Posts -->
-							<section class="posts">
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Automating Review Evaluation with OpenAI’s GPT-3.5<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/generated_image_fe56.png" alt="" /></a>
-										<p>
-											The goal of this project is to demonstrate the use of prompt engineering with GPT. I Employed OpenAI’s GPT-3.5 to analyze and score Amazon product reviews.
-										</p>
-										<ul class="actions special"  style="margin-top: auto;">
-											<li><a href="openai.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
-
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Hugging Face Transformers and BERT<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/huggingFace.jpg" alt="" /></a>
-										<p>
-											The goal of this project is to demonstrate the use of Hugging Face Transformers and BERT for sentiment analysis, and to compare the performance of Hugging Face Transformers and BERT with Naive Bayes for predicting product ratings on Amazon based on customer reviews.
-										</p>
-										<ul class="actions special">
-											<li><a href="Bert_Transformers.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
-
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">BERT Embeddings and T-SNE Visualization<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/DALLE1.jpg" alt="" /></a>
-										<p>
-											This project develops a fine-tuned BERT model to create embeddings of Amazon product reviews, with t-SNE visualization revealing structure and relationships within the data.
-										</p>
-										<ul class="actions special">
-											<li><a href="T-SNE.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-image">
+                <img src="images/AmazonRev.jpg" alt="Amazon Reviews Project" />
+            </div>
+            <div class="project-text">
+                <h2>Amazon Customer Reviews Rating</h2>
+                <p>The goal of this project is to predict the rating of a product on Amazon based on the text of a customer's review. We have a dataset of customer reviews for different products on Amazon, each associated with a rating ranging from 1 to 5.</p>
+                <a href="amazon.html" class="button">Learn more</a>
+            </div>
+        </div>
+    </section>
 
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Amazon Customer Reviews Rating<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/AmazonRev.jpg" alt="" /></a>
-										<p>
-											The goal of this project is to predict the rating of a product on Amazon based on the text of a
-											customer's review. We have a dataset of customer reviews for different products
-											on Amazon, each associated with a rating ranging from 1 to 5. In this project we use
-											Naive Bayes classifier as a baseline.
-										</p>
-										<ul class="actions special">
-											<li><a href="amazon.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-text">
+                <h2>Maternal Stress Volatility During Pregnancy</h2>
+                <p>The study investigates the effects of maternal stress volatility during pregnancy on child health outcomes using modern biostatistics and data science techniques.</p>
+                <a href="internship_project.html" class="button">Learn more</a>
+            </div>
+            <div class="project-image">
+                <img src="images/MaternalStress.jpg" alt="Maternal Stress Project" />
+            </div>
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Klamath River's Water Quality Exploration<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-										<p>In this USGS project, we investigated Klamath River's thermal stratification by examining weather and river flow data. We employed generalized additive models, random forest models, and K-means clustering to uncover patterns and establish a stratification threshold, guiding water resource management strategies.</p>
-										<ul class="actions special">
-											<li><a href="river.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+        </div>
+    </section>
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Maternal Stress Volatility During Pregnancy on Child Health<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
-										<p>
-											The study investigates the effects of maternal stress volatility during pregnancy on
-											child health outcomes using modern biostatistics and data science techniques.
-											By analyzing stress fluctuations based on biophysical, contextual, and demographic features,
-											the research explores its impact on infant health.
-										</p>
-										<ul class="actions special">
-											<li><a href="internship_project.html" class="button" style="background-color: #FFA07A;">Full Story </a></li>
-										</ul>
-								</article>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-image">
+                <img src="images/Cherry Blossom.jpg" alt="Cherry Blossom Project" />
+            </div>
+            <div class="project-text">
+                <h2>Cherry Blossom - How age affects health</h2>
+                <p>In this project, we analyze the data from the Cherry Blossom 10-mile running race from 1973-2022, which took place in Washington DC, to elucidate the connection between age and physical fitness.</p>
+                <a href="cherry.html" class="button">Learn more</a>
+            </div>
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2>
-												<a href="#">
-													Cherry Blossom - How age affects health<br />
-												</a>
-											</h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
-										<p>
-											In this project, we analyze the data from the Cherry Blossom 10-mile running race from 1973-2022, which took place in Washington DC, in order to elucidate the connection between age and physical fitness with respect to how fast people run. By using R, we processed the data and we found some interesting results about participants.
-										</p>
-										<ul class="actions special">
-											<li><a href="cherry.html#" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-text">
+                <h2>Food recommendation system</h2>
+                <p>In this food recommendation system project, I utilized feature engineering and scaling to preprocess nutritional data. By independently implementing K-means clustering and KNN regression algorithms from scratch.</p>
+                <a href="food.html" class="button">Learn more</a>
+            </div>
+            <div class="project-image">
+                <img src="images/FoodRecom.jpg" alt="Food Recommendation Project" />
+            </div>
+
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-image">
+                <img src="images/pic05.jpg" alt="Coin Detection Project" />
+            </div>
+            <div class="project-text">
+                <h2>Coin detection system - Deep learning</h2>
+                <p>In this innovative project, I collected diverse images of US coins using my smartphone and labeled them with bounding boxes through the LandingLens platform. I independently trained a deep neural network for object detection.</p>
+                <a href="coin.html" class="button">Learn more</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-text">
+                <h2>Loan default prediction</h2>
+                <p>In this collaborative project, our team employed dimensionality reduction techniques, such as principal component analysis and recursive feature elimination, developing predictive models using various approaches.</p>
+                <a href="loan.html" class="button">Learn more</a>
+            </div>
+            <div class="project-image">
+                <img src="images/Loandef.jpg" alt="Loan Default Project" />
+            </div>
+
+        </div>
+    </section>
 
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Food recommendation system<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
-										<p>In this food recommendation system project, I utilized feature engineering and scaling to preprocess nutritional data. By independently implementing K-means clustering and KNN regression algorithms from scratch and comparing them to sklearn's implementation, I successfully created a system that recommends similar food items based on user preferences. Throughout the project, I collaborated closely with my supervisor, ensuring clear communication of both the process and the final results.</p>
-										<ul class="actions special">
-											<li><a href="food.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+    <section class="project-section">
+        <div class="project-content">
+            <div class="project-image">
+                <img src="images/Water Quality.jpg" alt="Klamath River Project" />
+            </div>
+            <div class="project-text">
+                <h2>Klamath River's Water Quality Exploration</h2>
+                <p>In this USGS project, we investigated Klamath River's thermal stratification by examining weather and river flow data. We employed generalized additive models, random forest models, and K-means clustering to uncover patterns.</p>
+                <a href="river.html" class="button">Learn more</a>
+            </div>
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Coin detection system - Deep learning<br /></a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
-										<p>In this innovative project, I collected diverse images of US coins using my smartphone and labeled them with bounding boxes through the LandingLens platform. I independently trained a deep neural network for object detection, evaluating its performance based on data quality. After deploying the model as a web app, the final system detects various US coins in an image.</p>
-										<ul class="actions special">
-											<li><a href="coin.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+        </div>
+    </section>
 
-								<article class="project" style="display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 20px; margin-bottom: 20px; border: none; outline: none; min-height: 500px;">
-									<div style="flex-grow: 1;">
-										<header>
-											<h2><a href="#">Loan default prediction</a></h2>
-										</header>
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
-										<p>In this collaborative project, our team of three employed dimensionality reduction techniques, such as principal component analysis and recursive feature elimination. We developed predictive models using linear discriminant analysis, quadratic discriminant analysis, generalized linear models, and KNN. Throughout the project, we effectively used Git for project management and version control, while maintaining open communication with both our team members and project supervisor.</p>
-										<ul class="actions special">
-											<li><a href="loan.html" class="button" style="background-color: #FFA07A;">Full Story</a></li>
-										</ul>
-								</article>
+    <div class="social-links">
+        <a href="https://linkedin.com/in/mina-mehdinia/" class="fab fa-linkedin"></a>
+        <a href="https://github.com/minamh9" class="fab fa-github"></a>
+        <a href="https://medium.com/@minamehdinia213" class="fab fa-medium"></a>
+        <a href="mailto:minamehdinia213@gmail.com" class="fas fa-envelope"></a>
 
-							</section>
+    </div>
 
-						<!-- Footer -->
-<!--							<footer>-->
-<!--								<div class="pagination">-->
-<!--									&lt;!&ndash;<a href="#" class="previous">Prev</a>&ndash;&gt;-->
-<!--									<a href="#" class="page active">1</a>-->
-<!--									<a href="#" class="page">2</a>-->
-<!--									<a href="#" class="page">3</a>-->
-<!--									<span class="extra">&hellip;</span>-->
-<!--									<a href="#" class="page">8</a>-->
-<!--									<a href="#" class="page">9</a>-->
-<!--									<a href="#" class="page">10</a>-->
-<!--									<a href="#" class="next">Next</a>-->
-<!--								</div>-->
-<!--							</footer>-->
-					</div>
+    <script>
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
 
-				<!-- Footer -->
-					<footer id="footer">
-<!--						<section>-->
-<!--							<form method="post" action="#">-->
-<!--								<div class="fields">-->
-<!--									<div class="field">-->
-<!--										<label for="name">Name</label>-->
-<!--										<input type="text" name="name" id="name" />-->
-<!--									</div>-->
-<!--									<div class="field">-->
-<!--										<label for="email">Email</label>-->
-<!--										<input type="text" name="email" id="email" />-->
-<!--									</div>-->
-<!--									<div class="field">-->
-<!--										<label for="message">Message</label>-->
-<!--										<textarea name="message" id="message" rows="3"></textarea>-->
-<!--									</div>-->
-<!--								</div>-->
-<!--								<ul class="actions">-->
-<!--									<li><input type="submit" value="Send Message" /></li>-->
-<!--								</ul>-->
-<!--							</form>-->
-<!--						</section>-->
-<!--						<section class="split contact">-->
-<!--							<section class="alt">-->
-<!--								<h3>Address</h3>-->
-<!--								<p>Portland, Oregon, USA<br /></p>-->
-<!--							</section>-->
-<!--							<section>-->
-<!--								<h3>Phone</h3>-->
-<!--								<p><a href="#">(503) 308-0778</a></p>-->
-<!--							</section>-->
-<!--							<section>-->
-<!--								<h3>Email</h3>-->
-<!--								<p><a href="#">minatab253-at-gmail.com</a></p>-->
-<!--							</section>-->
-							<section>
-								<h3>Social</h3>
-								<ul class="icons alt">
-									<li><a href="https://linkedin.com/in/mina-mehdinia/" class="icon brands alt fa-linkedin"><span class="label">Linkedin</span></a></li>
-									<li><a href="https://github.com/minamh9" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
-							</section>
-<!--						</section>-->
-					</footer>
+        // Observe all project sections
+        document.querySelectorAll('.project-section').forEach(section => {
+            observer.observe(section);
+        });
 
-<!--				&lt;!&ndash; Copyright &ndash;&gt;-->
-<!--					<div id="copyright">-->
-<!--						<ul><li>&copy; Untitled</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>-->
-<!--					</div>-->
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
 </html>
